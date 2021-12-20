@@ -1,6 +1,8 @@
 var clickCount = document.getElementById("clickCount")
 var avgCpsCount = document.getElementById("avg-cps")
 var topCpsCount = document.getElementById("top-cps")
+var avgHoldVal = document.getElementById("avg-ht")
+var totalHoldVal = document.getElementById("t-ht")
 var particles = document.getElementById("particles");
 
 let measuringTime = 0.5;
@@ -10,16 +12,23 @@ let highestCps = 0;
 let consistency = 0;
 let currentClicks = 0;
 let totalIntervals = 0;
+let currentHoldTime = 0;
+let totalHoldTime = 0;
+let holdMs = 0;
+
+let darkMode = false;
 
 window.onload = function()
 {
-    document.addEventListener("click",onClick);
+    document.addEventListener("mousedown",onClick);
+    document.addEventListener("mouseup",onMouseUp)
+
     setInterval(onTick,measuringTime*1000)
     setInterval(animFrame,5)
 
-}
+} 
 
-function hsv2rgb(h, s, v) {
+function hsv2rgb(h, s, v) { 
     var r, g, b, i, f, p, q, t;
     if (arguments.length === 1) {
         s = h.s, v = h.v, h = h.h;
@@ -49,13 +58,23 @@ p=0;
 
 function onClick(e)
 {
+    if (e.button != 0) return;
+    holdMs = Date.now();
     pv = -Math.pow(popResistance,-p/popRecoilScale)*popAmplifier;
     clicks++;
     currentClicks++;
     clickCount.textContent=clicks;
-    let r = Math.floor(clicks/100)*0.1;
-    document.body.style.backgroundColor = hsv2rgb(r,1,1);
+    if (!darkMode)
+        document.body.style.backgroundColor = hsv2rgb(Math.floor(clicks/100)*0.1,1,1);
     createBubble(e);
+}
+
+function onMouseUp(e)
+{
+    if (e.button != 0) return;
+    totalHoldTime += Date.now()-holdMs;
+    totalHoldVal.textContent = "Total Hold Time: " + totalHoldTime/1000 + "s";
+    avgHoldVal.textContent = "Average Hold Time: " + (Math.round(totalHoldTime/clicks))/1000 + "s";
 }
 
 function createBubble(e)
@@ -101,4 +120,14 @@ function animFrame()
             pv = 0;
     }
     clickCount.style.fontSize=(300+p)+"px";
+}
+
+function toggleDarkMode()
+{
+    console.log("bruh");
+    darkMode = !darkMode;
+    if (darkMode)
+        document.body.style.backgroundColor = "#24292e"
+    else
+        document.body.style.backgroundColor = hsv2rgb(Math.floor(clicks/100)*0.1,1,1);
 }
