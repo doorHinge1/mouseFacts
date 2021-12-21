@@ -1,2 +1,2 @@
-# clickingTest
-(very original)
+# mouseFacts
+Stats about your mouse.
