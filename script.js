@@ -8,8 +8,14 @@ var avgCpsCount = document.getElementById("avg-cps")
 var topCpsCount = document.getElementById("top-cps")
 var avgHoldVal = document.getElementById("avg-ht")
 var totalHoldVal = document.getElementById("t-ht")
+var tMDVal = document.getElementById("t-md")
+var mSpdVal  = document.getElementById("m-spd")
+var avgSpdVal  = document.getElementById("avg-spd")
+var mCoords = document.getElementById("m-crds")
 var particles = document.getElementById("particles");
-var nightButton = document.getElementById("nightImg");
+
+
+let mSize = Math.floor((document.getElementById("mmHolder").clientHeight*10));
 
 let measuringTime = 0.5;
 let clicks = 0;
@@ -22,6 +28,12 @@ let currentHoldTime = 0;
 let totalHoldTime = 0;
 let holdMs = 0;
 let statsToggled = false;
+let totalMouseDist = 0;
+let thisDist = 0;
+let pMX = 0;
+let pMY = 0;
+let timeMoving = 0;
+
 window.onload = function()
 {
     document.addEventListener("mousedown",onClick);
@@ -54,8 +66,8 @@ function onMouseUp(e)
 {
     if (e.button != 0) return;
     totalHoldTime += Date.now()-holdMs;
-    totalHoldVal.textContent = "Total Hold Time: " + totalHoldTime/1000 + "s";
-    avgHoldVal.textContent = "Average Hold Time: " + (Math.round(totalHoldTime/clicks))/1000 + "s";
+    totalHoldVal.textContent = totalHoldTime/1000 + "s";
+    avgHoldVal.textContent = (Math.round(totalHoldTime/clicks))/1000 + "s";
 }
 
 function createBubble(e)
@@ -73,24 +85,30 @@ function createBubble(e)
     },1000)
     particles.append(particle);
 }
+
 function onTick()
 {
+    mSpdVal.textContent = Math.round(100*thisDist/measuringTime)/100 + "m/s";
+    if (thisDist > 0)
+        timeMoving+=measuringTime;
+    avgSpdVal.textContent = Math.round(100*totalMouseDist/timeMoving)/100 + "m/s"
+    thisDist = 0;
     if (currentClicks > 0)
     {
         let thisCps = currentClicks/measuringTime;
-        cpsCount.textContent = "CPS: "+thisCps;
+        cpsCount.textContent = thisCps;
         if (thisCps>highestCps)
         {
             highestCps = thisCps;
-            topCpsCount.textContent = "Highest CPS: "+highestCps;
+            topCpsCount.textContent = highestCps;
         }
         totalIntervals++;
         averageCps = Math.round((clicks/totalIntervals)/measuringTime);
-        avgCpsCount.textContent = "Average CPS: " + averageCps;
+        avgCpsCount.textContent = averageCps;
         currentClicks=0;
         return;
     }
-    cpsCount.textContent = "CPS: 0";
+    cpsCount.textContent = "0";
 }
 
 function animFrame()
@@ -119,5 +137,19 @@ function toggleStats()
         xStats.style.display = "none";
         toggleBtn.textContent = "More Stats";
     }
-        
+}
+
+document.onmousemove = onMouseMove;
+
+function onMouseMove(e)
+{
+    mCoords.textContent = "Mouse X: "+e.pageX + ", Mouse Y: "+e.pageY;
+    dx= (pMX-e.pageX)
+    dy = (pMY-e.pageY)
+    d = Math.sqrt(dx*dx + dy*dy);
+    totalMouseDist += d/mSize;
+    thisDist += d/mSize;
+    tMDVal.textContent = Math.round(totalMouseDist*100)/100+"m";
+    pMX = e.pageX;
+    pMY = e.pageY;
 }

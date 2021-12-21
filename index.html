@@ -17,18 +17,20 @@
             <div id = "main-body">
 
                 <div class="stats" id = "statHolder">
-    
-                    <div id = "cps">CPS: 0</div>
-                    <div id = "top-cps">Highest CPS: 0</div>
-                    <div id = "avg-cps">Average CPS: 0</div>
+
+                    <div class = "stat">CPS: <span id = "cps" class = "statVal">0</span></div>
+                    <div class = "stat">Highest CPS: <span id = "top-cps" class = "statVal">0</span></div>
+                    <div class = "stat">Average CPS: <span id = "avg-cps" class = "statVal">0</span></div>
     
                     <div id = "x-stats" hidden>
-                        <div id = "consistency">Consistency: 100%</div>
-                        <div id = "avg-ht">Average Hold Time: 0s</div>
-                        <div id = "t-ht">Total Hold Time: 0s</div>
-                        <div id = "c-ht">Holding Consistency: 100%</div>
-                        <div id = "avg-spd">Average Mouse Speed: 0m/s</div>
-                        <div id = "t-md">Total Distance Traveled: 0m</div>
+                        <!-- <div class = "stat">Consistency: <span id = "consistency" class = "statVal">100%</span></div> -->
+                        <div class = "stat">Average Hold Time: <span id = "avg-ht" class = "statVal">0s</span></div>
+                        <div class = "stat">Total Hold Time: <span id = "t-ht" class = "statVal">0s</span></div>
+                        <!-- <div class = "stat">Holding Consistency: <span id = "c-ht" class = "statVal">100%</span></div> -->
+                        <div class = "stat">Mouse Speed: <span id = "m-spd" class = "statVal">0m/s</span></div>
+                        <div class = "stat">Average Mouse Speed: <span id = "avg-spd" class = "statVal">0m/s</span></div>
+                        <div class = "stat">Total Distance Traveled: <span id = "t-md" class = "statVal">0m</span></div>
+                        <div id = "m-crds">MouseX: 0, MouseY: 0</div>
                     </div>
                 </div>
                 
@@ -41,5 +43,6 @@
         </div>
 
     </main>
+    <div id = "mmHolder" style="height:100mm"></div>
     <script src="script.js"></script>
 </html>
