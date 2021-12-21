@@ -12,33 +12,34 @@
         </head>
 
         <body>
-            <div id="clickCount" class="stats">0</div>
-
-            <div id = "main-body">
-
-                <div class="stats" id = "statHolder">
-
-                    <div class = "stat">CPS: <span id = "cps" class = "statVal">0</span></div>
-                    <div class = "stat">Highest CPS: <span id = "top-cps" class = "statVal">0</span></div>
-                    <div class = "stat">Average CPS: <span id = "avg-cps" class = "statVal">0</span></div>
-    
-                    <div id = "x-stats" hidden>
-                        <!-- <div class = "stat">Consistency: <span id = "consistency" class = "statVal">100%</span></div> -->
-                        <div class = "stat">Average Hold Time: <span id = "avg-ht" class = "statVal">0s</span></div>
-                        <div class = "stat">Total Hold Time: <span id = "t-ht" class = "statVal">0s</span></div>
-                        <!-- <div class = "stat">Holding Consistency: <span id = "c-ht" class = "statVal">100%</span></div> -->
-                        <div class = "stat">Mouse Speed: <span id = "m-spd" class = "statVal">0m/s</span></div>
-                        <div class = "stat">Average Mouse Speed: <span id = "avg-spd" class = "statVal">0m/s</span></div>
-                        <div class = "stat">Total Distance Traveled: <span id = "t-md" class = "statVal">0m</span></div>
-                        <div id = "m-crds">MouseX: 0, MouseY: 0</div>
-                    </div>
-                </div>
-                
-                <button id = "toggle-stats" onclick="toggleStats()">More Stats</button>
+            <h2 id = "mainTitle" class="title" style="font-size: 30px;">Mouse Facts</h2>
+            <div id = "mainBody">
+                <div id="clickCount" class="stats">0</div>
             </div>
-            
         </body>
 
+        <div class="stats" id = "statHolder">
+            <div class="title">Facts</div>
+
+            <span class = "statName">CPS </span><span id = "cps" class = "statVal">0</span> <br/>
+            <span class = "statName">Top CPS </span><span id = "top-cps" class = "statVal">0</span> <br/>
+            <span class = "statName">Average CPS </span><span id = "avg-cps" class = "statVal">0</span> <br/>
+            <!-- <div class = "stat">Consistency: <span id = "consistency" class = "statVal">100%</span></div> -->
+
+            <span class = "statName">Average Hold Time </span><span id = "avg-ht" class = "statVal">0s</span> <br/>
+            <span class = "statName">Total Hold Time </span><span id = "t-ht" class = "statVal">0s</span> <br/>
+            <!-- <div class = "stat">Holding Consistency: <span id = "c-ht" class = "statVal">100%</span></div> -->
+
+            <span class = "statName">Mouse Speed </span><span id = "m-spd" class = "statVal">0m/s</span> <br/>
+            <span class = "statName">Average Mouse Speed </span><span id = "avg-spd" class = "statVal">0m/s</span> <br/>
+            <span class = "statName">Total Distance Traveled </span><span id = "t-md" class = "statVal">0m</span> <br/>
+
+            <span class = "statName">Mouse Coords </span><span id = "m-crds" class = "statVal">0, 0</span> <br/>
+
+            <button onclick="reset()" class = "btn"><div class="title">Reset</div></button>
+            
+        </div>
+        
         <div id ="particles">
         </div>
 

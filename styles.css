@@ -7,7 +7,7 @@ h1{
 }
 #clickCount{
     position: fixed;
-    top:30%;
+    top:40%;
     left:50%;
     font-size: 300px;
     transform:translate(-50%,-50%);
@@ -15,15 +15,30 @@ h1{
 
 .stats{
     font-family: 'Titillium Web', sans-serif;
-    font-size:23px;
+    font-size:21px;
     user-select: none;
     pointer-events: none;
     color:white;
 }
 
 #statHolder{
-    line-height: 33px;
-    width:500px;
+    position: fixed;
+    border-radius: 15px;
+    line-height: 31px;
+    width:380px;
+    height: 400px;
+    top: 25%;
+    right: 50px;
+
+    background-color: rgb(27, 27, 27);
+}
+
+#particles{
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
 }
 
 .particle{
@@ -39,24 +54,52 @@ h1{
     transform:translate(-50%,-50%);
 }
 
-#toggle-stats{
+.btn{
     background: none;
     border: none;
     color: rgb(200, 200, 200);
-    font-size: 23px;
+    font-size: 21px;
+    transition: color .5s;
+    z-index: 2;
+    width: 100%;
+
+    pointer-events: auto;
 }
 
-#main-body{
+#mainBody{
     position: fixed;
+    transform:translate(-100px,-50%);
     top:50%;
     left:50%;
-    transform:translate(-80px,0);
+}
+
+.btn:hover{
+    color:rgb(255, 255, 255);
+}
+
+.statName {
+    color:rgb(255, 174, 0);
+    float: left;
+    transform: translate(20px,0);
 }
 
 .statVal {
-    text-align: right;
+    float: right;
+    transform: translate(-20px,0);
 }
 
+.title{
+    text-align: center;
+    transform:translate(0,10px);
+    font-family: 'Titillium Web', sans-serif;
+    font-size:21px;
+    user-select: none;
+    pointer-events: none;
+    color:white;
+}
+#mainTitle{
+    transform:translate(-100px,0);
+}
 @keyframes particlefade {
     0% {opacity: .6; width: 50px;}
     100% {opacity: 0; width: 200px;}

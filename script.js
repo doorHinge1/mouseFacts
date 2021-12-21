@@ -27,7 +27,6 @@ let totalIntervals = 0;
 let currentHoldTime = 0;
 let totalHoldTime = 0;
 let holdMs = 0;
-let statsToggled = false;
 let totalMouseDist = 0;
 let thisDist = 0;
 let pMX = 0;
@@ -124,26 +123,11 @@ function animFrame()
     clickCount.style.fontSize=(300+p)+"px";
 }
 
-function toggleStats()
-{
-    statsToggled = !statsToggled;
-    if (statsToggled)
-    {
-        xStats.style.display = "block";
-        toggleBtn.textContent = "Less Stats"
-    }
-    else
-    {
-        xStats.style.display = "none";
-        toggleBtn.textContent = "More Stats";
-    }
-}
-
 document.onmousemove = onMouseMove;
 
 function onMouseMove(e)
 {
-    mCoords.textContent = "Mouse X: "+e.pageX + ", Mouse Y: "+e.pageY;
+    mCoords.textContent = e.pageX + ", "+e.pageY;
     dx= (pMX-e.pageX)
     dy = (pMY-e.pageY)
     d = Math.sqrt(dx*dx + dy*dy);
@@ -152,4 +136,31 @@ function onMouseMove(e)
     tMDVal.textContent = Math.round(totalMouseDist*100)/100+"m";
     pMX = e.pageX;
     pMY = e.pageY;
+}
+function reset()
+{
+    clicks = 0;
+    averageCps = 0;
+    highestCps = 0;
+    consistency = 0;
+    currentClicks = 0;
+    totalIntervals = 0;
+    currentHoldTime = 0;
+    totalHoldTime = 0;
+    holdMs = 0;
+    totalMouseDist = 0;
+    thisDist = 0;
+    pMX = 0;
+    pMY = 0;
+    timeMoving = 0;
+
+    totalHoldVal.textContent = "0s";
+    mSpdVal.textContent = "0m/s";
+    avgSpdVal.textContent = "0m/s";
+    clickCount.textContent = "0";
+    cpsCount.textContent = "0";
+    avgCpsCount.textContent = "0";
+    avgHoldVal.textContent = "0s";
+    tMDVal.textContent = "0m";
+    topCpsCount.textContent = "0";
 }
