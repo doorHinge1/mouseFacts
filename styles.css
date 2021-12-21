@@ -1,6 +1,5 @@
 body{
-    transition: background-color 2s;
-    background-color: red;
+    background-color: #24292e;
 }
 
 h1{
@@ -8,36 +7,24 @@ h1{
 }
 #clickCount{
     position: fixed;
-    top:40%;
+    top:30%;
     left:50%;
-    transform:translate(-50%,-50%);
     font-size: 300px;
-    
+    transform:translate(-50%,-50%);
 }
 
 .stats{
     font-family: 'Titillium Web', sans-serif;
+    font-size:25px;
     user-select: none;
     pointer-events: none;
     color:white;
 }
 
 #statHolder{
-    position: fixed;
-    font-size: 30px;
-    top:40%;
-    left:50%;
-    transform:translate(-50%,170px);
-    line-height: 50px;
+    line-height: 35px;
 }
 
-#darkModeButton{
-    position: absolute;
-    background-color: rgba(255, 0, 0, 0);
-    border: none;
-    left: 95%;
-    top: 5%
-}
 .particle{
     animation: particlefade 1s;
     opacity: 0;
@@ -49,9 +36,21 @@ h1{
     -webkit-user-select: none;
     -ms-user-select: none; 
     transform:translate(-50%,-50%);
-
 }
 
+#toggle-stats{
+    background: none;
+    border: none;
+    color: rgb(200, 200, 200);
+    font-size: 25px;
+}
+
+#main-body{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,0);
+}
 @keyframes particlefade {
     0% {opacity: .6; width: 50px;}
     100% {opacity: 0; width: 200px;}

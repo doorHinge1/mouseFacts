@@ -1,9 +1,15 @@
+var mainBody = document.getElementById("main-body")
+var xStats = document.getElementById("x-stats")
+var toggleBtn = document.getElementById("toggle-stats")
+
 var clickCount = document.getElementById("clickCount")
+var cpsCount = document.getElementById("cps")
 var avgCpsCount = document.getElementById("avg-cps")
 var topCpsCount = document.getElementById("top-cps")
 var avgHoldVal = document.getElementById("avg-ht")
 var totalHoldVal = document.getElementById("t-ht")
 var particles = document.getElementById("particles");
+var nightButton = document.getElementById("nightImg");
 
 let measuringTime = 0.5;
 let clicks = 0;
@@ -15,9 +21,7 @@ let totalIntervals = 0;
 let currentHoldTime = 0;
 let totalHoldTime = 0;
 let holdMs = 0;
-
-let darkMode = false;
-
+let statsToggled = false;
 window.onload = function()
 {
     document.addEventListener("mousedown",onClick);
@@ -27,27 +31,6 @@ window.onload = function()
     setInterval(animFrame,5)
 
 } 
-
-function hsv2rgb(h, s, v) { 
-    var r, g, b, i, f, p, q, t;
-    if (arguments.length === 1) {
-        s = h.s, v = h.v, h = h.h;
-    }
-    i = Math.floor(h * 6);
-    f = h * 6 - i;
-    p = v * (1 - s);
-    q = v * (1 - f * s);
-    t = v * (1 - (1 - f) * s);
-    switch (i % 6) {
-        case 0: r = v, g = t, b = p; break;
-        case 1: r = q, g = v, b = p; break;
-        case 2: r = p, g = v, b = t; break;
-        case 3: r = p, g = q, b = v; break;
-        case 4: r = t, g = p, b = v; break;
-        case 5: r = v, g = p, b = q; break;
-    }
-    return "rgb(" + Math.round(r * 255) +"," + Math.round(g * 255) + "," + Math.round(b * 255) + ")";
-}
 
 let popResistance = 2;
 let popRecoil = 3000;
@@ -64,8 +47,6 @@ function onClick(e)
     clicks++;
     currentClicks++;
     clickCount.textContent=clicks;
-    if (!darkMode)
-        document.body.style.backgroundColor = hsv2rgb(Math.floor(clicks/100)*0.1,1,1);
     createBubble(e);
 }
 
@@ -97,6 +78,7 @@ function onTick()
     if (currentClicks > 0)
     {
         let thisCps = currentClicks/measuringTime;
+        cpsCount.textContent = "CPS: "+thisCps;
         if (thisCps>highestCps)
         {
             highestCps = thisCps;
@@ -106,7 +88,9 @@ function onTick()
         averageCps = Math.round((clicks/totalIntervals)/measuringTime);
         avgCpsCount.textContent = "Average CPS: " + averageCps;
         currentClicks=0;
+        return;
     }
+    cpsCount.textContent = "CPS: 0";
 }
 
 function animFrame()
@@ -122,12 +106,18 @@ function animFrame()
     clickCount.style.fontSize=(300+p)+"px";
 }
 
-function toggleDarkMode()
+function toggleStats()
 {
-    console.log("bruh");
-    darkMode = !darkMode;
-    if (darkMode)
-        document.body.style.backgroundColor = "#24292e"
+    statsToggled = !statsToggled;
+    if (statsToggled)
+    {
+        xStats.style.display = "block";
+        toggleBtn.textContent = "Less Stats"
+    }
     else
-        document.body.style.backgroundColor = hsv2rgb(Math.floor(clicks/100)*0.1,1,1);
+    {
+        xStats.style.display = "none";
+        toggleBtn.textContent = "More Stats";
+    }
+        
 }

@@ -3,25 +3,43 @@
     <main>
         <head>
             <meta charset="UTF-8"/>
+
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Roboto:wght@300&family=Titillium+Web&display=swap" rel="stylesheet">
+
             <link rel="stylesheet" href="styles.css">
         </head>
 
         <body>
             <div id="clickCount" class="stats">0</div>
-            <div class="stats" id = "statHolder">
-                <div id = "top-cps">Highest CPS: 0</div>
-                <div id = "avg-cps">Average CPS: 0</div>
-                <div id = "consistency">Consistency: 100%</div>
-                <div id = "avg-ht">Average Hold Time: 0s</div>
-                <div id = "t-ht">Total Hold Time: 0s</div>
+
+            <div id = "main-body">
+
+                <div class="stats" id = "statHolder">
+    
+                    <div id = "cps">CPS: 0</div>
+                    <div id = "top-cps">Highest CPS: 0</div>
+                    <div id = "avg-cps">Average CPS: 0</div>
+    
+                    <div id = "x-stats" hidden>
+                        <div id = "consistency">Consistency: 100%</div>
+                        <div id = "avg-ht">Average Hold Time: 0s</div>
+                        <div id = "t-ht">Total Hold Time: 0s</div>
+                        <div id = "c-ht">Holding Consistency: 100%</div>
+                        <div id = "avg-spd">Average Mouse Speed: 0m/s</div>
+                        <div id = "t-md">Total Distance Traveled: 0m</div>
+                    </div>
+                </div>
+                
+                <button id = "toggle-stats" onclick="toggleStats()">More Stats</button>
             </div>
-            <button id = "darkModeButton" onclick="toggleDarkMode()"> <img src = "nightButton.png" width="50px"></button>
+            
         </body>
+
         <div id ="particles">
         </div>
+
     </main>
     <script src="script.js"></script>
 </html>
